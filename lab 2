@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <locale.h>
+#include <windows.h>
+
+double calculate_series_sum(int N, double exit_S) {
+    double sum = 0.0;
+    double numerator = 1.0;
+    double denominator = 1.0;
+    int num_factor = 3;
+    int den_factor = 4;
+    
+    // Проверка условия выхода перед выполнением цикла
+    if (N <= 0) {
+        printf("Ошибка: некорректное количество элементов\n");
+        return 0.0;
+    }
+    
+    printf("Вычисление суммы с пороговым значением: %lf\n", exit_S);
+    
+    for (int i = 1; i <= N; i++) {
+        double element = numerator / denominator;
+        sum += element;
+        
+        printf("Элемент %d: %lf\n", i, element);
+        
+        // Проверка достижения порогового значения
+        if (element < exit_S) {
+            printf("Достигнуто пороговое значение! Элемент %lf меньше %lf на итерации %d\n", 
+                   element, exit_S, i);
+            break;
+        }
+        
+        numerator *= num_factor;
+        num_factor += 2;
+        
+        denominator *= den_factor;
+        den_factor += 3;
+    }
+    
+    return sum;
+}
+
+int main() {
+    setlocale(LC_ALL, "Rus");
+    
+    int N;
+    double exit_S;  // Изменяем на double для более точного сравнения
+    
+    printf("Введите количество элементов ряда N: ");
+    scanf("%d", &N);
+    
+    printf("Введите пороговое значение для выхода exit_S: ");
+    scanf("%lf", &exit_S);  // Используем %lf для double
+    
+    double result = calculate_series_sum(N, exit_S);
+    
+    printf("Сумма элементов ряда: %lf\n", result);
+    
+    return 0;
+}
