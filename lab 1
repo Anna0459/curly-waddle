@@ -1,0 +1,29 @@
+#include <stdio.h>
+float calculate_distance(float v1, float v2, float t) {
+ return v1*t+v2*t;
+}
+
+int main(void)
+{
+    float v1;
+    float v2;
+    float t;
+    float s;
+    
+    printf("v1 (км/ч) = ");
+    scanf("%f", &v1);
+    printf(" %.0f\n", v1);  
+    
+    printf("v2 (км/ч) = ");
+    scanf("%f", &v2);
+    printf(" %.0f\n", v2);
+    
+    printf("t (часы) = ");
+    scanf("%f", &t);
+    printf(" %.0f\n", t);
+    
+    s = calculate_distance(v1,v2, t);
+    printf("distance (км/ч)  = %.2f\n", s);
+    
+    return 0;
+}      
