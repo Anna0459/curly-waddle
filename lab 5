@@ -1,0 +1,41 @@
+#include <stdio.h>
+#define N 10
+
+int main(void) {
+    int x[N];           // массив из N элементов
+    int min_idx = 0;    // индекс минимального элемента
+    int max_idx = 0;    // индекс максимального элемента
+    int i;
+
+    // ввод массива
+    for (i = 0; i < N; i++) {
+        scanf("%d", &x[i]);
+    }
+
+    // поиск индексов минимального и максимального элементов
+    for (i = 1; i < N; i++) {
+        if (x[i] < x[min_idx]) {
+            min_idx = i;
+        }
+        if (x[i] > x[max_idx]) {
+            max_idx = i;
+        }
+    }
+
+    // определяем границы диапазона для обнуления
+    int start = (min_idx < max_idx) ? min_idx + 1 : max_idx + 1;
+    int end = (min_idx < max_idx) ? max_idx : min_idx;
+
+    // обнуление элементов между min и max
+    for (i = start; i < end; i++) {
+        x[i] = 0;
+    }
+
+    // вывод массива
+    for (i = 0; i < N; i++) {
+        printf("%d ", x[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
